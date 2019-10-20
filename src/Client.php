@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of the jiannei/http.
+ *
+ * (c) jiannei<longjian.huang@aliyun.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace Jiannei\Http;
 
@@ -11,13 +19,19 @@ use Jiannei\Http\TransferStats\TransferStats;
 class Client
 {
     private $configs;
+
     private $beforeSendingCallbacks;
+
     private $bodyFormat;
+
     private $options;
+
     private $cookies;
 
     public static $request;
+
     public static $transferStats;
+
     public static $response;
 
     private function __construct(array $configs)
@@ -190,13 +204,14 @@ class Client
     {
         try {
             $originalOptions = [
-                'query'    => $this->parseQueryParams($url),
+                'query' => $this->parseQueryParams($url),
                 'on_stats' => function (\GuzzleHttp\TransferStats $transferStats) {
                     $this->transferStats(new TransferStats($transferStats));
                 },
             ];
 
             $response = $this->buildClient()->request($method, $url, $this->mergeOptions($originalOptions, $options));
+
             return $this->response(new Response($response));
         } catch (\GuzzleHttp\Exception\ConnectException $e) {
             throw new ConnectionException($e->getMessage(), 0, $e);
@@ -261,5 +276,3 @@ class Client
         });
     }
 }
-
-
