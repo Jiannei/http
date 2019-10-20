@@ -1,0 +1,26 @@
+{
+    "name": "jiannei\/http",
+    "description": "A simple http client wrapper.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jiannei",
+            "email": "longjian.huang@aliyun.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^6.3",
+        "tightenco/collect": "^6.3"
+    },
+    "autoload": {
+        "files": [
+            "src/Support/helpers.php"
+        ],
+        "psr-4": {
+            "Jiannei\\Http\\": "src"
+        }
+    }
+}
